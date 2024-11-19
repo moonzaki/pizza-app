@@ -1,0 +1,22 @@
+.input {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  width: 324px;
+  height: 65px;
+  outline: unset;
+  font-weight: 400;
+  font-size: 17px;
+  color: #000;
+  padding: 20px;
+
+  &::placeholder {
+    color: #c4c4c4;
+  }
+
+  &:focus,
+  &:focus-visible {
+    border: 1px solid #eee;
+  }
+
+  &.invalid {}
+}
