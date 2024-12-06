@@ -1,23 +1,23 @@
-import { useEffect, useState } from 'react';
-import { Outlet, useLocation, NavLink, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import Button from '../../components/Button/Button';
 import styles from './Layout.module.scss';
 import { useDisableAnimationOnResize } from '../../hooks/useDisableAnimationOnResize';
 import { useSvgAnimation } from '../../hooks/useSvgAnimationOnLoad';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store/store';
+import { userActions } from '../../store/user.slice';
 
 function Layout() {
   const [open, setOpen] = useState(false);
-  const location = useLocation();
   const isLoadedClass = useSvgAnimation('loaded', 100);
   useDisableAnimationOnResize(styles.sidebar);
   const navigate = useNavigate();
-  useEffect(() => {
-    // console.log(location);
-  }, [location]);
+  const dispatch = useDispatch<AppDispatch>();
 
-  const logOut = () => {
-    localStorage.removeItem('UserData');
+  const logout = () => {
+    dispatch(userActions.logout());
     navigate('/auth/login');
   };
 
@@ -84,7 +84,7 @@ function Layout() {
           </ul>
         </nav>
         <Button
-          onClick={logOut}
+          onClick={logout}
           appearence="logout"
           style={{ minWidth: '117px', width: 'fit-content', height: 'fit-content' }}
         >
