@@ -1,24 +1,53 @@
+:root {
+  --sidebar-width: 240px;
+}
+
 .layout {
-  display: flex;
+  // display: flex;
   height: 100%;
 
   .burger {
     display: none;
+    background: var(--secondary-color);
   }
 }
 
-.menu {
+.content {
+  margin: 0 0 0 var(--sidebar-width);
+  flex-grow: 1;
+  padding: 40px 60px 0;
+}
+
+.link {
+  transition: .3s;
+  color: var(--text-color);
+
+  &:visited {
+    color: var(--text-color);
+  }
+
+  &:hover {
+    color: var(--primary-color);
+  }
+
+  &.active {
+    color: var(--primary-color);
+  }
+}
+
+.sidebar {
+  position: fixed;
+  height: 100%;
+  z-index: 2;
+  background: var(--white-color);
   padding: 30px 25px 53px 30px;
   display: flex;
   flex-direction: column;
   gap: 46px;
-  max-width: 240px;
+  max-width: var(--sidebar-width);
   width: 100%;
   border-right: 1px solid var(--border-color);
 
-  &.no-transition {
-    transition: none; // Отключение анимации
-  }
 
   nav {
     flex-grow: 1;
@@ -29,26 +58,21 @@
       gap: 34px;
       padding: unset;
       margin: unset;
+      list-style: none;
 
       li {
-        display: flex;
-        align-items: center;
-        gap: 14px;
         font-family: var(--font-family);
         color: var(--text-color);
+        width: fit-content;
 
         a {
+          display: flex;
+          align-items: center;
+          gap: 14px;
           font-family: var(--font-family);
           text-decoration: none;
-          color: var(--text-color);
 
-          &:visited {
-            color: var(--text-color);
-          }
 
-          &:hover {
-            color: var(--primary-color);
-          }
         }
       }
     }
@@ -76,8 +100,9 @@
       aspect-ratio: 1;
       border-radius: 50%;
       overflow: hidden;
-
+      filter: drop-shadow(0px 0px 10px rgba(254, 114, 76, 0.25));
       background: var(--primary-color);
+      transition: .3s ease-in-out;
 
       svg {
         width: 100%;
@@ -103,12 +128,20 @@
     flex-direction: column;
   }
 
-  .menu {
+  .content {
+    padding: 10px 20px 0;
+    margin: 0 auto;
+
+  }
+
+  .sidebar {
+    height: auto;
     flex-direction: row;
     align-items: center;
     gap: 1em;
     max-width: 100%;
     border-right: unset;
+    padding: 10px 20px;
     border-bottom: 1px solid var(--border-color);
 
     nav {
@@ -119,7 +152,7 @@
       ul {
         flex-direction: row;
 
-        li {}
+        //li {}
       }
     }
 
@@ -127,18 +160,17 @@
       flex-direction: row;
       align-items: center;
 
-      &-info {}
+      //&-info {}
 
       &-image {
         min-width: 45px;
-
-        svg {}
+        max-width: 45px;
       }
     }
 
-    .headline {}
+    //.headline {}
 
-    .email {}
+    //.email {}
   }
 }
 
@@ -154,11 +186,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 45px;
-      height: 45px;
+      width: 35px;
+      height: 35px;
       border: 2px solid var(--primary-color);
       cursor: pointer;
-      z-index: 1;
+      z-index: 2;
 
       &.open {
         span::before {
@@ -202,8 +234,13 @@
     }
   }
 
-  .menu {
+  .content {
+    padding: 5px 10px 0;
+  }
+
+  .sidebar {
     position: fixed;
+    z-index: 1;
     right: 0;
     top: 0;
     align-items: flex-start;
@@ -211,7 +248,8 @@
     height: 100%;
     flex-direction: column;
     gap: 2em;
-    max-width: 240px;
+    max-width: var(--sidebar-width);
+    background: var(--white-color);
     border-bottom: unset;
     border-left: 1px solid var(--border-color);
     transform: translateX(100%);
@@ -221,8 +259,6 @@
     &.open {
       transform: translateX(0);
     }
-
-
 
     nav {
       display: flex;
@@ -241,17 +277,35 @@
       text-align: left;
       width: 100%;
 
-      &-info {}
+      //&-info {}
 
       &-image {
         min-width: 45px;
-
-        svg {}
       }
     }
 
-    .headline {}
+    //.headline {}
 
-    .email {}
+    //.email {}
   }
+}
+
+
+//.user-image svg,
+//nav svg,
+//button svg {
+.user-image svg,
+nav svg {
+  opacity: 0; // Изначально невидимо
+  transform: scale(0.8); // Уменьшение размера
+  transition: opacity 0.5s ease, transform 0.5s ease; // Плавный переход
+}
+
+//.user-image svg.loaded,
+//nav svg.loaded,
+//button svg.loaded {
+.user-image svg.loaded,
+nav svg.loaded {
+  opacity: 1; // Видимо
+  transform: scale(1); // Обычный размер
 }

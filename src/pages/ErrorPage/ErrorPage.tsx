@@ -1,13 +1,11 @@
-import { Link } from 'react-router-dom';
+import Headline from '../../components/Headline/Headline';
 
 function ErrorPage() {
-  return(<>
-    <div>
-      <Link to="/">Menu</Link>
-      <Link to="/basket">Basket</Link> 
-    </div>
-    ErrorPage
-  </>);
+  return (
+    <>
+      <Headline>404</Headline>
+    </>
+  );
 }
 
 export default ErrorPage;

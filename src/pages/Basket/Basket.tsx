@@ -1,7 +1,9 @@
+import Headline from '../../components/Headline/Headline';
+
 function Basket() {
   return (
     <>
-      Basket
+      <Headline>Basket</Headline>
     </>
   );
 }

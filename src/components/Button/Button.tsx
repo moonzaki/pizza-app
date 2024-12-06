@@ -24,7 +24,8 @@ function Button({children, className, appearence='small', ...props}:ButtonProps)
         {
           [styles.small]: appearence === 'small',
           [styles.big]: appearence === 'big',
-          [styles.logout]: appearence === 'logout'
+          [styles.logout]: appearence === 'logout',
+          [styles['add-dish']]: appearence === 'add-dish'
         }
       )}
       {...props}>

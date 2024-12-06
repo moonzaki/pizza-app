@@ -3,7 +3,10 @@
 
 :root {
   --primary-color: #FE724C;
+  --secondary-color: #fff;
+  --placeholder-color: #9796a1;
   --text-secondary-color: #5B5B5E;
+  --error-color: #dd1616;
   --white-color: #fff;
   --text-color: #000;
   --text-color-light: #9ea1b1;
@@ -34,4 +37,15 @@ html {
 
 .no-transition {
   transition: none !important;
+}
+
+.load-svg {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+
+  &.loaded {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
